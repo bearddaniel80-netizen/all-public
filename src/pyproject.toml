@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aql"
+version = "1.5.0"
+description = "Query multiple sources"
+authors = [{ name = "Daniel Beard" }]
+requires-python = ">=3.10"
+dependencies = [
+    "typer", "build", "rich", "aql-link"
+]
+
+[project.scripts]
+aql = "aql.cli:app"
