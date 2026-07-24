@@ -1,0 +1,29 @@
+from .base import AggregateFunction
+from ..registry import (
+        register_function_call,
+        FieldType,
+        FuncType,
+        SqlFunc
+    ) 
+
+@register_function_call(
+        name="SUM",
+        printable=SqlFunc(
+            description="Add all values in a collection.",
+            example="SUM(<field>)",
+            func_type=FuncType.AGGREGATE,
+            input_type=[FieldType.INT],
+            return_type=FieldType.INT
+        )
+    )
+class SumFunction(AggregateFunction):
+
+    def __init__(self):
+        self.kind = "aggregate"
+        self.total = 0
+
+    def step(self, value):
+        self.total += int(value)
+
+    def finalize(self):
+        return self.total

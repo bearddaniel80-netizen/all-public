@@ -1,0 +1,36 @@
+# aql_core/language/keywords.py
+
+from .tokens import TokenType
+
+KEYWORDS = {
+    "ALL": TokenType.ALL,
+    "AND": TokenType.AND,
+    "AS": TokenType.AS,
+    "ASC": TokenType.ASC,
+    "BETWEEN": TokenType.BETWEEN,
+    "BY": TokenType.BY,
+    "CONTAINS": TokenType.CONTAINS,
+    "DECLARE": TokenType.DECLARE,
+    "DESC": TokenType.DESC,
+    "DESCRIBE": TokenType.DESCRIBE,
+    "ENDSWITH": TokenType.ENDSWITH,
+    "EXCEPT": TokenType.EXCEPT,
+    "FROM": TokenType.FROM,
+    "GROUP": TokenType.GROUP,
+    "HAVING": TokenType.HAVING,
+    "IN": TokenType.IN,
+    "INTERSECT": TokenType.INTERSECT,
+    "LIKE": TokenType.LIKE,
+    "LIMIT": TokenType.LIMIT,
+    "NOT": TokenType.NOT,
+    "OR": TokenType.OR,
+    "ORDER": TokenType.ORDER,
+    "RECURSIVE": TokenType.RECURSIVE,
+    "SELECT": TokenType.SELECT,
+    "SHOW": TokenType.SHOW,
+    "STARTSWITH": TokenType.STARTSWITH,
+    "WHERE": TokenType.WHERE,
+    "WITH": TokenType.WITH,
+    "UNION": TokenType.UNION,
+    "USING": TokenType.USING,
+}
