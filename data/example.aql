@@ -1,0 +1,37 @@
+USING "some.aql"
+
+DECLARE csv AS csv('data.csv')
+DECLARE some macro AS SHOW aggregates
+
+-- this is a comment
+# this is a comment
+// this is a comment
+/*
+    comment block
+*/
+/**
+    doc block
+    @author: me
+    @type: file info
+*/
+/// doc comment line
+/*
+RECURSIVE index_cte AS ( -- inline comment
+    SELECT 1 AS id # inline comment
+    UNION ALL 
+    SELECT id + 1 FROM index_cte WHERE id < 4
+), 
+*/
+WITH some_cte AS (
+    some macro // inline comment
+), other_cte AS (
+    SELECT age FROM csv # test of inline comment
+), log_cte AS (
+    SELECT PARSE_KV(line) FROM log('data.log')
+), aggregate_cte AS (
+    SHOW aggregates
+)
+
+SELECT * FROM aggregate_cte
+# SELECT user FROM log_cte WHERE user = 'bob'
+# SELECT * FROM some_cte

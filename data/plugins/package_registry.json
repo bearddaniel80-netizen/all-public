@@ -1,0 +1,93 @@
+{
+  "plugins": {
+    "arrow": {
+      "loaded": false,
+      "require": ["pyarrow"],
+      "path": "plugins/arrow"
+    },
+    "avro": {
+      "loaded": false,
+      "require": ["avro", "fastavro"],
+      "path": "plugins/avro"
+    },
+    "binary": {
+      "loaded": false,
+      "path": "plugins/binary"
+    },
+    "csv": {
+      "loaded": false,
+      "path": "plugins/csv"
+    },
+    "elf": {
+      "loaded": false,
+      "require": ["elftools"],
+      "path": "plugins/elf"
+    },
+    "email": {
+      "loaded": false,
+      "path": "plugins/email"
+    },
+    "json": {
+      "loaded": false,
+      "path": "plugins/json"
+    },
+    "log": {
+      "loaded": false,
+      "path": "plugins/log"
+    },
+    "maildir": {
+      "loaded": false,
+      "path": "plugins/maildir"
+    },
+    "mbox": {
+      "loaded": false,
+      "path": "plugins/mbox"
+    },
+    "parquet": {
+      "loaded": false,
+      "require": ["pyarrow"],
+      "path": "plugins/parquet"
+    },
+    "pcap": {
+      "loaded": false,
+      "require": ["scapy"],
+      "path": "plugins/pcap"
+    },
+    "pe": {
+      "loaded": false,
+      "require": ["pefile"],
+      "path": "plugins/pe"
+    },
+    "protobuf": {
+      "loaded": false,
+      "require": ["protobuf"],
+      "path": "plugins/protobuf"
+    },
+    "sevenzip": {
+      "loaded": false,
+      "require": ["py7zr"],
+      "path": "plugins/sevezip"
+    },
+    "sqlite": {
+      "loaded": false,
+      "path": "plugins/sqlite"
+    },
+    "tar": {
+      "loaded": false,
+      "path": "plugins/tar"
+    },
+    "xml": {
+      "loaded": false,
+      "path": "plugins/xml"
+    },
+    "yaml": {
+      "loaded": false,
+      "require": ["pyyaml"],
+      "path": "plugins/yaml"
+    },
+    "zip": {
+      "loaded": false,
+      "path": "plugins/zip"
+    }
+  }
+}

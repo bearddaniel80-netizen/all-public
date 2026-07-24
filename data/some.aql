@@ -1,0 +1,2 @@
+-- this is an imported file
+DECLARE x AS bad
