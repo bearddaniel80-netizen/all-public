@@ -86,11 +86,9 @@ class ShowHandler(BaseHandler):
         
         fn_name = ast.target.name
 
-        fn_cls = FUNCTION_CALL_REGISTRY.get(fn_name)
+        fn = FUNCTION_CALL_REGISTRY.get(fn_name)
 
-        fn = fn_cls()
-
-        raw = ast.target.arg
+        raw = ast.target.arg[0]
 
         if isinstance(raw, Literal):
             raw = raw.value
