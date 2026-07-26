@@ -44,7 +44,7 @@ class SchemaInspector:
             result.append({
                 "name": f.name,
                 "type": self.format_type(f.type),
-                "nullable": self._is_nullable(f.type),
+                #   "nullable": self._is_nullable(f.type),
             })
 
         return result
