@@ -1,14 +1,27 @@
+from __future__ import annotations
+from pathlib import Path
 from dataclasses import dataclass, field
 from .about.types import CommentType
 
 @dataclass
+class ImportNode:
+    path: Path
+
+    parent: ImportNode | None = None
+    children: list[ImportNode] = field(default_factory=list)
+
+    prev: ImportNode | None = None
+    next: ImportNode | None = None
+
+@dataclass
+class ImportGraph:
+    root: ImportNode
+    nodes: dict[Path, ImportNode] = field(default_factory=dict)
+
+@dataclass
 class SourceLoader:
-    collector: dict = field(
-        default_factory=dict
-    )
-    flow: dict = field(
-        default_factory=dict
-    )
+    collector: dict = field(default_factory=dict)
+    tree: ImportGraph | None = None
 
 @dataclass
 class Comments:

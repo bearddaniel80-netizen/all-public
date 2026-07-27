@@ -1,8 +1,9 @@
 from .context import PreprocessorContext
 from .stages.fileloader import FileLoadingStage
-from .stages.using import UsingStage
-from .stages.macro import MacroStage
-from .stages.comment_striper import CommentStripStage
+from .models import ImportGraph, ImportNode
+# from .stages.using import UsingStage
+# from .stages.macro import MacroStage
+# from .stages.comment_striper import CommentStripStage
 from .stages.read_factory import ReadFactory
 
 from pathlib import Path
@@ -19,7 +20,7 @@ class Preprocessor:
         ]
         self.source_loader = source_loader
 
-    def process(self, path):
+    def process(self, path, parent=None):
 
         if Path(path).exists() == False:
             raise Exception(f"{path.name} not found.")
