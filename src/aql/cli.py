@@ -7,7 +7,7 @@ from .preprocess.factory import Preprocessor
 from .preprocess.about.types import AboutType
 from .preprocess.about.registry import ABOUT_REGISTRY
 from .preprocess.about import pipeline
-from .preprocess.models import SourceLoader
+from .preprocess.models import SourceLoader, ImportGraph
 
 app = typer.Typer(help="AQL query everything.")
 
@@ -23,9 +23,10 @@ def about(
         help="Output catagory"
     ),
 ):
-    typer.echo(f"About: {filename}")
+    # typer.echo(f"About: {filename}")
     path = Path.cwd() / filename
     source_loader = SourceLoader()
+    import_graph = ImportGraph(root=ImportNode(path))
     preprocess_ctx = Preprocessor(source_loader).process(path)
     fn = ABOUT_REGISTRY[catagory]
     if not fn:
@@ -41,7 +42,7 @@ def query(
         help="AQL query string",
     )
 ):
-    typer.echo(f"Query: {q}")
+    # typer.echo(f"Query: {q}")
     query_results(q)
 
 @app.command()
@@ -51,10 +52,15 @@ def run(
         help="AQL file name or path",
     )
 ):
-    typer.echo(f"Run: {filename}")
+    # typer.echo(f"Run: {filename}")
     path = Path.cwd() / filename
     source_loader = SourceLoader()
     preprocess_ctx = Preprocessor(source_loader).process(path)
 
     data = " ".join(preprocess_ctx.source)
     query_results(data)
+
+@app.callback(invoke_without_command=True)
+def main(ctx: typer.Context, script: Path | None = None):
+    if script:
+        run(script)
