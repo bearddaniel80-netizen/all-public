@@ -1,5 +1,5 @@
 from ..registry import (
-    CatagoryType,
+    CategoryType,
     register_function_call,
     SourceFunc,
     FuncType
@@ -10,7 +10,7 @@ from aql_link.managers.package_loader import load
 @register_function_call(
         name="sqlite",
         printable=SourceFunc(
-            catagory_type=[CatagoryType.FLATFILE, CatagoryType.DATABASE],
+            catagory_type=[CategoryType.FLATFILE, CategoryType.DATABASE],
             description="Runs a query on the file.",
             func_type=FuncType.ADAPTER,
             template="SELECT * FROM sqlite(<file>)",

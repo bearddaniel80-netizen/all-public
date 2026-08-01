@@ -1,5 +1,5 @@
 from ..registry import (
-    CatagoryType,
+    CategoryType,
     register_function_call,
     SourceFunc,
     FuncType
@@ -10,7 +10,7 @@ from aql_link.managers.package_loader import load
 @register_function_call(
         name="log",
         printable=SourceFunc(
-            catagory_type=[CatagoryType.FLATFILE],
+            catagory_type=[CategoryType.FLATFILE],
             description="Reads from file.",
             extra_info="aql deliminates lines into \s then =",
             enabled=True,

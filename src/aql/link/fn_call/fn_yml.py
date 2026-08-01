@@ -1,5 +1,5 @@
 from ..registry import (
-    CatagoryType,
+    CategoryType,
     register_function_call,
     SourceFunc,
     FuncType
@@ -10,7 +10,7 @@ from aql_link.managers.package_loader import load
 @register_function_call(
         name="yaml",
         printable=SourceFunc(
-            catagory_type=[CatagoryType.FLATFILE],
+            catagory_type=[CategoryType.FLATFILE],
             description="Reads from file.",
             requirements=["pyyaml"],
             enabled=True,

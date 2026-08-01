@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from enum import Enum
 
-class CatagoryType(str, Enum):
+class CategoryType(str, Enum):
     ARCHIVE = "archive"
     DATABASE = "database"
     EXECUTABLE = "executable"
@@ -64,7 +64,7 @@ class SqlFunc(BaseFunc):
 
 @dataclass
 class SourceFunc(BaseFunc):
-    catagory_type: list[CatagoryType] = None,
+    category_type: list[CategoryType] = None,
     func_type: FuncType = FuncType.ADAPTER,
     sme_type: SMEType = SMEType.GENERAL,
     enabled: bool = False
@@ -76,7 +76,7 @@ class SourceFunc(BaseFunc):
             "template": self.template,
             "extra_info": self.extra_info,
             "requirements": [ item for item in self.requirements] if self.requirements else None,
-            "catagory_type": [ item for item in self.catagory_type],
+            "category_type": [ item for item in self.category_type],
             "func_type": self.func_type,
             "sme_type": self.sme_type,
             "enabled": str(self.enabled)

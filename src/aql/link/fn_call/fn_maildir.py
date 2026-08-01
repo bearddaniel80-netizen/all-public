@@ -1,5 +1,5 @@
 from ..registry import (
-    CatagoryType,
+    CategoryType,
     register_function_call,
     SMEType,
     SourceFunc,
@@ -11,7 +11,7 @@ from aql_link.managers.package_loader import load
 @register_function_call(
         name="maildir",
         printable=SourceFunc(
-            catagory_type=[CatagoryType.FLATFILE],
+            catagory_type=[CategoryType.FLATFILE],
             description="Reads messages in dir.",
             sme_type=SMEType.SECURITY,
             func_type=FuncType.ADAPTER,

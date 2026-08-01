@@ -1,5 +1,5 @@
 from ..registry import (
-    CatagoryType,
+    CategoryType,
     register_function_call,
     SMEType,
     SourceFunc,
@@ -11,7 +11,7 @@ from aql_link.managers.package_loader import load
 @register_function_call(
         name="pcap",
         printable=SourceFunc(
-            catagory_type=[CatagoryType.NETWORK, CatagoryType.STREAM],
+            catagory_type=[CategoryType.NETWORK, CategoryType.STREAM],
             description="Reads network trafic.",
             requirements=["scapy"],
             sme_type=SMEType.SECURITY,

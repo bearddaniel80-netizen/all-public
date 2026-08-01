@@ -1,5 +1,5 @@
 from ..registry import (
-    CatagoryType,
+    CategoryType,
     register_function_call,
     SourceFunc,
     FuncType
@@ -10,7 +10,7 @@ from aql_link.managers.package_loader import load
 @register_function_call(
         name="tar",
         printable=SourceFunc(
-            catagory_type=[CatagoryType.FLATFILE, CatagoryType.ARCHIVE],
+            catagory_type=[CategoryType.FLATFILE, CategoryType.ARCHIVE],
             description="Reads headers in archive file.",
             func_type=FuncType.ADAPTER,
             template="SELECT * FROM tar(<file>)",

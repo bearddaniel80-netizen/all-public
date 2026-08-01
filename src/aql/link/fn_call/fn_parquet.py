@@ -1,5 +1,5 @@
 from ..registry import (
-    CatagoryType,
+    CategoryType,
     register_function_call, 
     SourceFunc,
     FuncType
@@ -10,7 +10,7 @@ from aql_link.managers.package_loader import load
 @register_function_call(
         name="parquet",
         printable=SourceFunc(
-            catagory_type=[CatagoryType.DATABASE],
+            catagory_type=[CategoryType.DATABASE],
             description="Stores data as a dataframe.",
             requirements=["pyarrow"],
             func_type=FuncType.ADAPTER,

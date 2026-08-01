@@ -1,5 +1,5 @@
 from ..registry import (
-    CatagoryType,
+    CategoryType,
     register_function_call,
     SMEType,
     SourceFunc,
@@ -11,7 +11,7 @@ from aql_link.managers.package_loader import load
 @register_function_call(
         name="elf",
         printable=SourceFunc(
-            catagory_type=[CatagoryType.EXECUTABLE, CatagoryType.FLATFILE],
+            catagory_type=[CategoryType.EXECUTABLE, CategoryType.FLATFILE],
             description="Reads from file.",
             requirements=["elftools"],
             sme_type=SMEType.LEGACY,
