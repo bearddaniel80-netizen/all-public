@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1.7
 # ---------- deps ----------
 FROM python:3.12-slim AS deps
 
@@ -5,18 +6,26 @@ WORKDIR /build
 
 COPY requirements.txt .
 
-RUN pip install \
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install \
     --prefix=/install \
     -r requirements.txt
 
-# ---------- aql-link ----------
-FROM deps AS aql-link
+# ---------- Common Git Stage ----------
+FROM deps AS git-base
 
 COPY --from=deps /install /usr/local
 
-RUN apt update && apt install -y git
+RUN --mount=type=cache,target=/var/cache/apt \
+    apt-get update && \
+    apt-get install -y git
 
-RUN git clone https://github.com/bearddaniel80-netizen/aegis-link.git
+# ---------- aql-link ----------
+FROM git-base AS link
+
+COPY --from=deps /install /usr/local
+
+RUN git clone --depth=1 https://github.com/bearddaniel80-netizen/aegis-link.git
 
 WORKDIR aegis-link/src
 
@@ -40,10 +49,10 @@ FROM deps AS runtime
 
 COPY --from=deps /install /usr/local
 
-COPY --from=aql-link /tmp/*.whl /tmp
-RUN pip install /tmp/*.whl
+COPY --from=link /tmp/*.whl /tmp
 
 COPY --from=aql /tmp/*.whl /tmp
+
 RUN pip install /tmp/*.whl
 
 WORKDIR /app
