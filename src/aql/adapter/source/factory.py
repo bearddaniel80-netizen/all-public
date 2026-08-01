@@ -1,4 +1,4 @@
-from ...engine.package_loader import load
+from aql_link.managers.package_loader import load
 
 class StdinSourceFactory:
     @staticmethod
