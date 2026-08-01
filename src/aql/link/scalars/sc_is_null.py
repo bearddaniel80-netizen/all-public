@@ -10,7 +10,7 @@ from ..registry import (
         name="IS_NULL",
         printable=SqlFunc(
             description="Checks is null.",
-            example="IS_NULL(<field>)",
+            template=["SELECT IS_NULL(<field>)"],
             func_type=FuncType.SCALAR,
             input_type=[FieldType.ANY],
             return_type=FieldType.BOOL

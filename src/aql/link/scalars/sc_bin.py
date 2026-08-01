@@ -10,10 +10,10 @@ from ..registry import (
         name="BIN",
         printable=SqlFunc(
             description="Returns binary value.",
-            example="BIN(<field>)",
+            template=["SELECT BIN(<field>)"],
             func_type=FuncType.SCALAR,
-            input_type=[FieldType.NUMBER],
-            return_type=FieldType.NUMBER
+            input_type=[FieldType.INT, FieldType.FLOAT, FieldType.COMPLEX],
+            return_type=FieldType.INT
         )
     )
 class BinFunction(ScalarFunction):

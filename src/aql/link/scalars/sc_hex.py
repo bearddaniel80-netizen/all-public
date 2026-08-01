@@ -10,9 +10,9 @@ from ..registry import (
         name="HEX",
         printable=SqlFunc(
             description="Returns hexadecimal value.",
-            example="HEX(<field>)",
+            template=["SELECT HEX(<field>)"],
             func_type=FuncType.SCALAR,
-            input_type=[FieldType.NUMBER],
+            input_type=[FieldType.INT, FieldType.FLOAT, FieldType.COMPLEX],
             return_type=FieldType.TEXT
         )
     )

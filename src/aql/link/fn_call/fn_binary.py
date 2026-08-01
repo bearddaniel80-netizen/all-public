@@ -2,22 +2,27 @@ from ..registry import (
     CatagoryType,
     register_function_call,
     SMEType,
-    SourceFunc
+    SourceFunc,
+    FuncType
 )
 
-from ...engine.package_loader import load
+from aql_link.managers.package_loader import load
 
 @register_function_call(
         name="binary",
         printable=SourceFunc(
             catagory_type=[CatagoryType.EXECUTABLE, CatagoryType.STORAGE],
             description="Reads from storage format.",
-            sme_type=SMEType.SECURITY
+            sme_type=SMEType.SECURITY,
+            func_type=FuncType.ADAPTER,
+            template="SELECT * FROM bin(<file>)",
+            enabled=False
         )
     )
 class BinaryTableFunction:
 
     def execute(self, *args):
+        raise NotImplementedError("coming soon")
         path = args[0]
         load("binary")
         from aql_bin.adaptor.binary_source import BinarySource

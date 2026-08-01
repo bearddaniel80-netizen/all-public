@@ -5,16 +5,21 @@ from ..registry import (
         FuncType,
         SqlFunc
     )
-from ...engine.module_loader import load
+from aql_link.managers.module_loader import load
 
 @register_function_call(
         name="AVG",
         printable=SqlFunc(
             description="Find average or mean of a collection.",
-            example="AVG(<field>)",
+            template=[
+                "SELECT AVG(<field>)",
+                "HAVING AVG(<field>) <op> <value:int>",
+                "ORDER BY AVG(<field>)"
+            ],
             func_type=FuncType.AGGREGATE,
             input_type=[FieldType.INT],
-            return_type=FieldType.FLOAT
+            return_type=FieldType.FLOAT,
+            needs_groupby=True
         )
     )
 class AverageFunction(AggregateFunction):

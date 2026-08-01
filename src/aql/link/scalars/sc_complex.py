@@ -10,10 +10,10 @@ from ..registry import (
         name="COMPLEX",
         printable=SqlFunc(
             description="Returns complex value.",
-            example="COMPLEX(<field>)",
+            template=["SELECT COMPLEX(<field>)"],
             func_type=FuncType.SCALAR,
-            input_type=[FieldType.NUMBER],
-            return_type=FieldType.NUMBER
+            input_type=[FieldType.INT, FieldType.FLOAT, FieldType.COMPLEX],
+            return_type=FieldType.INT
         )
     )
 class ComplexFunction(ScalarFunction):

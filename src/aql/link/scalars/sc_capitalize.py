@@ -9,7 +9,7 @@ from ..registry import (
         name="CAPITALIZE",
         printable=SqlFunc(
             description="Capitalize first letter in each word in a sentence.",
-            example="CAPITALIZE(<field>)",
+            template=["SELECT CAPITALIZE(<field>)"],
             func_type=FuncType.SCALAR,
             input_type=[FieldType.TEXT],
             return_type=FieldType.TEXT

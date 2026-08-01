@@ -1,22 +1,27 @@
 from ..registry import (
     CatagoryType,
     register_function_call,
-    SourceFunc
+    SourceFunc,
+    FuncType
 )
 
-from ...engine.package_loader import load
+from aql_link.managers.package_loader import load
 
 @register_function_call(
         name="protobuf",
         printable=SourceFunc(
             catagory_type=[CatagoryType.FLATFILE],
             description="Reads strongly typed JSON file.",
-            requirements=["protobuf"]
+            requirements=["protobuf"],
+            func_type=FuncType.ADAPTER,
+            template="SELECT * FROM protobuf(<file>)",
+            enabled=False
         )
     )
 class ProtobufTableFunction:
 
     def execute(self, *args):
+        raise NotImplementedError("coming soon")
         path = args[0]
         load("protobuf")
         from aql_prrotobuf.adaptor.protobuf_source import ProtobufSource

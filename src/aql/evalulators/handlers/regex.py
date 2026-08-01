@@ -1,8 +1,15 @@
 import re
 from .base import BaseHandler
 from ...language.ast.expressions.operators import RegexMatch
-from ..registry import register_eval_handler
+from ..registry import register_eval_handler, register_operator, Operator, SupportType
 
+@register_operator(
+    op = Operator(
+        name="~=",
+        support_type=[SupportType.INT,SupportType.STR],
+        template=["WHERE <field> ~= <value>"]
+    )
+)
 @register_eval_handler(priority=68)
 class RegexMatchHandler(BaseHandler):
     def can_handle(self, node):

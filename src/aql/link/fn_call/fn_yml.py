@@ -1,16 +1,21 @@
 from ..registry import (
     CatagoryType,
     register_function_call,
-    SourceFunc
+    SourceFunc,
+    FuncType
 )
-from ...engine.package_loader import load
+
+from aql_link.managers.package_loader import load
 
 @register_function_call(
         name="yaml",
         printable=SourceFunc(
             catagory_type=[CatagoryType.FLATFILE],
             description="Reads from file.",
-            requirements=["pyyaml"]
+            requirements=["pyyaml"],
+            enabled=True,
+            func_type=FuncType.ADAPTER,
+            template="SELECT * FROM yaml(<file>)"
         )
     )
 class YamlTableFunction:

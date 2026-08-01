@@ -10,10 +10,15 @@ from ..registry import (
         name="SUM",
         printable=SqlFunc(
             description="Add all values in a collection.",
-            example="SUM(<field>)",
+            template=[
+                "SELECT SUM(<field>)",
+                "HAVING SUM(<field>) <op> <value:int>",
+                "ORDER BY SUM(<field>)"
+            ],
             func_type=FuncType.AGGREGATE,
             input_type=[FieldType.INT],
-            return_type=FieldType.INT
+            return_type=FieldType.INT,
+            needs_groupby=True
         )
     )
 class SumFunction(AggregateFunction):

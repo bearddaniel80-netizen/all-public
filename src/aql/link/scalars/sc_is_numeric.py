@@ -10,7 +10,7 @@ from ..registry import (
         name="IS_NUMERIC",
         printable=SqlFunc(
             description="Checks text contains whole, subscript, superscript numbers or fractions.",
-            example="IS_NUMERIC(<field>)",
+            template=["SELECT IS_NUMERIC(<field>)"],
             extra_info="Does not support decimals, negatives, nor scietific notations",
             func_type=FuncType.SCALAR,
             input_type=[FieldType.TEXT],

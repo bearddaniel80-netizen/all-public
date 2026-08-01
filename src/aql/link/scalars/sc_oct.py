@@ -10,9 +10,9 @@ from ..registry import (
         name="OCT",
         printable=SqlFunc(
             description="Returns oct value.",
-            example="OCT(<field>)",
+            template=["SELECT OCT(<field>)"],
             func_type=FuncType.SCALAR,
-            input_type=[FieldType.NUMBER],
+            input_type=[FieldType.INT, FieldType.FLOAT, FieldType.COMPLEX],
             return_type=FieldType.TEXT
         )
     )

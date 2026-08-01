@@ -10,10 +10,15 @@ from ..registry import (
         name="COUNT",
         printable=SqlFunc(
             description="Count elements in a collection.",
-            example="COUNT(<field>)",
+            template=[
+                "SELECT COUNT(<field>)",
+                "HAVING COUNT(<field>) <op> <value:int>",
+                "ORDER BY COUNT(<field>)"
+            ],
             func_type=FuncType.AGGREGATE,
             input_type=[FieldType.INT],
-            return_type=FieldType.INT
+            return_type=FieldType.INT,
+            needs_groupby=True
         )
     )
 class CountFunction(AggregateFunction):

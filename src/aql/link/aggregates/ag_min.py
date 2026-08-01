@@ -11,10 +11,15 @@ from ..registry import (
         name="MIN",
         printable=SqlFunc(
             description="Find smallest value in a collection.",
-            example="MIN(<field>)",
+            template=[
+                "SELECT MIN(<field>)",
+                "HAVING MIN(<field>) <op> <value:int>",
+                "ORDER BY MIN(<field>)"
+            ],
             func_type=FuncType.AGGREGATE,
             input_type=[FieldType.INT],
-            return_type=FieldType.INT
+            return_type=FieldType.INT,
+            needs_groupby=True
         )
     )
 class MaxFunction(AggregateFunction):

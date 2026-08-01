@@ -10,7 +10,7 @@ from ..registry import (
         name="IS_LOWER",
         printable=SqlFunc(
             description="Checks all letters are lower case.",
-            example="IS_LOWER(<field>)",
+            template=["SELECT IS_LOWER(<field>)"],
             func_type=FuncType.SCALAR,
             input_type=[FieldType.TEXT],
             return_type=FieldType.BOOL

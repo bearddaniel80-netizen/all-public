@@ -1,7 +1,17 @@
 from .base import BaseHandler
 from ...language.ast.expressions.operators import InOp
-from ..registry import register_eval_handler
+from ..registry import register_eval_handler, register_operator, Operator, SupportType
 
+@register_operator(
+    op = Operator(
+        name="IN",
+        support_type=[SupportType.INT,SupportType.STR],
+        template=[
+            "WHERE <field> IN [<value:int>]",
+            "WHERE <field> IN [<value:str>]"
+        ]
+    )
+)
 @register_eval_handler(priority=60)
 class InOpHandler(BaseHandler):
     def can_handle(self, node):

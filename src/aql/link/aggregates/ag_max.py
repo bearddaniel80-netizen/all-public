@@ -10,10 +10,15 @@ from ..registry import (
         name="MAX",
         printable=SqlFunc(
             description="Find largest value in a collection.",
-            example="MAX(<field>)",
+            template=[
+                "SELECT MAX(<field>)",
+                "HAVING MAX(<field>) <op> <value:int>",
+                "ORDER BY MAX(<field>)"
+            ],
             func_type=FuncType.AGGREGATE,
             input_type=[FieldType.INT],
-            return_type=FieldType.INT
+            return_type=FieldType.INT,
+            needs_groupby=True
         )
     )
 class MaxFunction(AggregateFunction):

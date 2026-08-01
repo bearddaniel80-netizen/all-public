@@ -21,8 +21,9 @@ class FieldType(str, Enum):
     BOOL = "bool"
     FLOAT = "float"
     INT = "int"
-    NUMBER = "int, float, or complex"
-    TEXT = "str"
+    STR = "str"
+    COMPLEX = "complex"
+    TEXT = "text"
 
 class FuncType(str, Enum):
     ADAPTER = "adapter"
@@ -34,7 +35,7 @@ class FuncType(str, Enum):
 class BaseFunc:
     name: str = None,
     description: str = None,
-    example: str = None,
+    template: list[str] = None,
     extra_info: str = None,
     requirements: list = None
 
@@ -45,36 +46,40 @@ class BaseFunc:
 class SqlFunc(BaseFunc):
     input_type: list[FieldType] = None,
     return_type: FieldType = None,
-    func_type: FuncType = None
+    func_type: FuncType = None,
+    needs_groupby: bool = False
 
     def to_dict(self):
         return {
             "name": self.name,
             "description": self.description,
-            "example": self.example,
+            "template": self.template,
             "extra_info": self.extra_info,
             "requirements": [ item for item in self.requirements] if self.requirements else None,
             "func_type": self.func_type,
             "input_type": [ item for item in self.input_type],
-            "return_type": self.return_type
+            "return_type": self.return_type,
+            "needs_groupby_clause": str(self.needs_groupby),
         }
 
 @dataclass
 class SourceFunc(BaseFunc):
     catagory_type: list[CatagoryType] = None,
     func_type: FuncType = FuncType.ADAPTER,
-    sme_type: SMEType = SMEType.GENERAL
+    sme_type: SMEType = SMEType.GENERAL,
+    enabled: bool = False
 
     def to_dict(self):
         return {
             "name": self.name,
             "description": self.description,
-            "example": self.example,
+            "template": self.template,
             "extra_info": self.extra_info,
             "requirements": [ item for item in self.requirements] if self.requirements else None,
             "catagory_type": [ item for item in self.catagory_type],
             "func_type": self.func_type,
-            "sme_type": self.sme_type
+            "sme_type": self.sme_type,
+            "enabled": str(self.enabled)
         }
 
 FUNCTION_CALL_REGISTRY = {}
