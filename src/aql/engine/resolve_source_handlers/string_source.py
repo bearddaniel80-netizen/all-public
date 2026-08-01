@@ -11,13 +11,13 @@ class StringSourceResolver(BaseResolver):
     def resolve(self, ast_node, engine_context, analysis_ctx, include_schema: bool = False):
 
         # then physical sources
-        factory = self.data_sources.get(source_name)
+        factory = self.data_sources.get(ast_node)
 
         if factory is None:
-            raise ValueError(f"Unknown source: {source_name}")    
+            raise ValueError(f"Unknown source: {ast_node}")    
 
         # ✅ stdin case
-        if source_name == "stdin":
+        if ast_node == "stdin":
             raw = sys.stdin.read()
             source = factory.from_raw(raw)
 

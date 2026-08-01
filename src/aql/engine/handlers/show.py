@@ -1,9 +1,10 @@
 from .base import BaseHandler
 from ..registry import register_handler
+from ..resolve_source_handlers.registry_identifier import SOURCE_REGISTRY
+from ..resolve_source_handlers import identifier_sources
 from ...language.ast.statements.show import Show
 from ...language.ast.statements.describe import Describe
 from ...adapter.source.base import StdinSource
-from ...link.registry import FUNCTION_CALL_REGISTRY, PRINTABLE
 from ...language.ast.function_call import TableFunctionCall
 from ...language.ast.expressions.literals import Literal
 
@@ -33,14 +34,15 @@ class ShowHandler(BaseHandler):
         if(isinstance(ast.target, TableFunctionCall)):
             return self.handle_fn_call(ast)
 
-        if ast.target == "aggregates":
-            return self.show_aggregates()
-        elif ast.target == "functions":
-            return self.show_fn_call()
-        elif ast.target == "scalars":
-            return self.show_scalars()
-        elif ast.target == "sources":
-            return self.show_sources()
+        fn = SOURCE_REGISTRY[ast.target]
+
+        if fn:
+            fn_cls = fn()
+
+            if isinstance(ast, Describe):
+                return fn_cls.describe(self.engine_context, self.inspector)
+
+            return fn_cls.show()
 
         if ast.target not in self.data_sources:
             analysis_ctx.artifacts["diagnostic"].fatal("EHS01", f"Unknown target: {ast.target}", "Fix source")
@@ -65,21 +67,6 @@ class ShowHandler(BaseHandler):
         ])
 
         return pipeline.run(data)
-
-    def show_aggregates(self):
-        from ...link import aggregates
-        return PRINTABLE
-
-    def show_fn_call(self):
-        from ...link import fn_call
-        return PRINTABLE
-
-    def show_scalars(self):
-        from ...link import scalars
-        return PRINTABLE
-
-    def show_sources(self):
-        return list(self.data_sources.keys())
 
     def handle_fn_call(self, ast):
         from ...link import fn_call

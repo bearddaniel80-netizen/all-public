@@ -8,5 +8,4 @@ class ConstantRelationSourceResolver(BaseResolver):
         self.data_sources = data_sources
 
     def resolve(self, ast_node, engine_context, analysis_ctx, include_schema: bool = False):
-        print("Found achor")
         return [{}] # empty 1x1
