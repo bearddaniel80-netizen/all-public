@@ -17,10 +17,10 @@ def about(
         ...,
         help="AQL file name or path info",
     ),
-    catagory: AboutType = typer.Option(
+    category: AboutType = typer.Option(
         AboutType.SOURCE,
-        "--catagory",
-        help="Output catagory"
+        "--category",
+        help="Output category"
     ),
 ):
     # typer.echo(f"About: {filename}")
@@ -28,12 +28,25 @@ def about(
     source_loader = SourceLoader()
     import_graph = ImportGraph(root=ImportNode(path))
     preprocess_ctx = Preprocessor(source_loader).process(path)
-    fn = ABOUT_REGISTRY[catagory]
+    fn = ABOUT_REGISTRY[category]
     if not fn:
-        raise Exception(f"About type {catagory} no found.")
+        raise Exception(f"About type {category} no found.")
     fn_cls = fn()
     result = fn_cls.process(source_loader)
     print_json(data=result)
+
+@app.command()
+def docs():
+    typer.echo("Writing docs")
+    from .docs.documentation_filter import Filter
+    from .docs.factory import DocumentationFactory
+    query_results = DocumentationFactory().create().queries_classification['csv']
+    queries = [q.to_dict() for q in query_results]
+    # Filter().from_source(queries).where("fields", "*").largest().print_source()
+    Filter().from_source(queries).where("feature", "SUM").largest().print_source()
+    # print_json(data=[q.to_dict() for q in query_results])
+
+    print("Number of queries: ", len(query_results))
 
 @app.command()
 def query(
