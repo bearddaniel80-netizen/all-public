@@ -7,7 +7,7 @@ def _added_regex(value, operator_registry):
         name=f"{value}",
         support_type=[SupportType.STR],
         template=[
-            f"WHERE <field> {value} <value:str>"
+            f"WHERE <field:str> {value} '<value:str>'"
         ]
     )
     operator_registry[value] = operator
@@ -15,14 +15,23 @@ def _added_regex(value, operator_registry):
 def build_dict():
     operator_registry = OPERATOR_REGISTRY
     for member in BinaryOpType:
-        operator = Operator(
-            name=f"{member.value}",
-            support_type=[SupportType.INT, SupportType.STR],
-            template=[
-                f"WHERE <field> {member.value} <value:int>",
-                f"WHERE <field> {member.value} <value:str>"
-            ]
-        )
+        if member.value == "=" or member.value == "!=":
+            operator = Operator(
+                name=f"{member.value}",
+                support_type=[SupportType.INT, SupportType.STR],
+                template=[
+                    f"WHERE <field:int> <op:int> <value:int>",
+                    f"WHERE <field:str> <op:str> '<value:str>'"
+                ]
+            )
+        else:
+            operator = Operator(
+                name=f"{member.value}",
+                support_type=[SupportType.INT],
+                template=[
+                    f"WHERE <field:int> <op:int> <value:int>"
+                ]
+            )
         operator_registry[member.value] = operator
 
     _added_regex("LIKE", operator_registry)

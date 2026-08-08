@@ -6,8 +6,8 @@ from ..registry import register_eval_handler, register_operator, Operator, Suppo
 @register_operator(
     op = Operator(
         name="~=",
-        support_type=[SupportType.INT,SupportType.STR],
-        template=["WHERE <field> ~= <value>"]
+        support_type=[SupportType.STR],
+        template=["WHERE <field:str> ~= '<value:str>'"]
     )
 )
 @register_eval_handler(priority=68)

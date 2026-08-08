@@ -23,17 +23,37 @@ class StdinSources:
 @register_source(name="stdin_sources")
 class Sources(IdentifierSource):
     def __init__(self):
+        templates = [
+            "cat <file> | DESCRIBE stdin",
+            "echo <raw> | DESCRIBE stdin",
+            "cat <file> | SHOW stdin",
+            "echo <raw> | SHOW stdin",
+            "cat <file> | SELECT *",
+            "cat <file> | SELECT * FROM stdin",
+            "echo <raw> | SELECT *",
+            "echo <raw> | SELECT * FROM stdin",
+            "cat <file> | SELECT <field:str>",
+            "cat <file> | SELECT <field:str> FROM stdin",
+            "echo <raw> | SELECT <field:str>",
+            "echo <raw> | SELECT <field:str> FROM stdin",
+            "cat <file> | SELECT <field:int>",
+            "cat <file> | SELECT <field:int> FROM stdin",
+            "echo <raw> | SELECT <field:int>",
+            "echo <raw> | SELECT <field:int> FROM stdin"        
+        ]
         self.data = []
+        self.data.append(
+            StdinSources(
+                name="csv_stdin",
+                description="Reads raw or file based data",
+                template= templates
+            )
+        )
         self.data.append(
             StdinSources(
                 name="json_stdin",
                 description="Reads raw or file based data",
-                template=[
-                    "cat <file> | SELECT *",
-                    "cat <file> | SELECT * FROM stdin",
-                    "echo <raw> | SELECT *",
-                    "echo <raw> | SELECT * FROM stdin"
-                ]
+                template= templates
             )
         )
         self.data.append(
@@ -50,24 +70,14 @@ class Sources(IdentifierSource):
             StdinSources(
                 name="xml_stdin",
                 description="Reads raw or file based data",
-                template=[
-                    "cat <file> | SELECT *",
-                    "cat <file> | SELECT * FROM stdin",
-                    "echo <raw> | SELECT *",
-                    "echo <raw> | SELECT * FROM stdin"
-                ]
+                template=templates
             )
         )
         self.data.append(
             StdinSources(
                 name="yaml_stdin",
                 description="Reads raw or file based data",
-                template=[
-                    "cat <file> | SELECT *",
-                    "cat <file> | SELECT * FROM stdin",
-                    "echo <raw> | SELECT *",
-                    "echo <raw> | SELECT * FROM stdin"
-                ]
+                template=templates
             )
         )
 

@@ -18,12 +18,12 @@ class FunctionSource(IdentifierSource):
     def query(self):
         from ....link import fn_call
         from ....link.registry import PRINTABLE, FuncType
-        return [ item for item in PRINTABLE if item["func_type"] == FuncType.ADAPTER]
+        return [ item for item in PRINTABLE if item["func_type"] == FuncType.ADAPTER and 'True' in item["enabled"] ]
 
     def show(self):
         from ....link import fn_call
         from ....link.registry import PRINTABLE, FuncType
-        data = [ item for item in PRINTABLE if item["func_type"] == FuncType.ADAPTER]
+        data = [ item for item in PRINTABLE if item["func_type"] == FuncType.ADAPTER and 'True' in item["enabled"]]
         pipeline = Pipeline([
             ShowStage(data),
         ])

@@ -7,8 +7,8 @@ from ..registry import register_eval_handler, register_operator, Operator, Suppo
         name="IN",
         support_type=[SupportType.INT,SupportType.STR],
         template=[
-            "WHERE <field> IN [<value:int>]",
-            "WHERE <field> IN [<value:str>]"
+            "WHERE <field:int> IN [<value:int>, <value:int>]",
+            "WHERE <field:str> IN ['<value:str>', '<value:str>']"
         ]
     )
 )

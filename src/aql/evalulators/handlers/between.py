@@ -5,8 +5,10 @@ from ..registry import register_eval_handler, register_operator, Operator, Suppo
 @register_operator(
     op = Operator(
         name="BETWEEN",
-        support_type=[SupportType.STR],
-        template=["WHERE <field> BETWEEN <value:int> AND <value:int>"]
+        support_type=[SupportType.INT],
+        template=[
+            "WHERE <field:int> BETWEEN <value:int> AND <value:int>",
+        ]
     )
 )
 @register_eval_handler(priority=66)
