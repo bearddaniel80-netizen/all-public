@@ -11,12 +11,11 @@ from aql_link.managers.package_loader import load
 @register_function_call(
         name="elf",
         printable=SourceFunc(
-            catagory_type=[CategoryType.EXECUTABLE, CategoryType.FLATFILE],
+            category_type=[CategoryType.EXECUTABLE, CategoryType.FLATFILE],
             description="Reads from file.",
             requirements=["elftools"],
             sme_type=SMEType.LEGACY,
             func_type=FuncType.ADAPTER,
-            template="SELECT * FROM elf(<file>)",
             enabled=False
         )
     )

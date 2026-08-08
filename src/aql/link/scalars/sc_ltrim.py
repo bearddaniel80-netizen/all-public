@@ -7,22 +7,20 @@ from ..registry import (
     ) 
 
 @register_function_call(
-        name="HEX",
+        name="LTRIM",
         printable=SqlFunc(
-            description="Returns hexadecimal value.",
-            template=[
-                "SELECT HEX(<field:int>)",
-            ],
+            description="Remove whitespace before.",
+            template=["SELECT LTRIM(<field:str>)"],
             func_type=FuncType.SCALAR,
-            input_type=[FieldType.INT, FieldType.FLOAT, FieldType.COMPLEX],
+            input_type=[FieldType.TEXT],
             return_type=FieldType.TEXT,
             needs_groupby=False
         )
     )
-class HexFunction(ScalarFunction):
+class LTrimFunction(ScalarFunction):
 
     def __init__(self):
         self.kind = "scalar"
 
     def evaluate(self, value):
-        return hex(value)
+        return value.lstrip()

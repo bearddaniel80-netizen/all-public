@@ -10,11 +10,10 @@ from aql_link.managers.package_loader import load
 @register_function_call(
         name="avro",
         printable=SourceFunc(
-            catagory_type=[CategoryType.DATABASE],
+            category_type=[CategoryType.DATABASE],
             description="Stores data as a dataframe.",
             requirements=["avro", "fastavro"],
             func_type=FuncType.ADAPTER,
-            template="SELECT * FROM avro(<file>)",
             enabled=False
         )
     )

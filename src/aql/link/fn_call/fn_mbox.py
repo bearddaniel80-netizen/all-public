@@ -11,11 +11,10 @@ from aql_link.managers.package_loader import load
 @register_function_call(
         name="mbox",
         printable=SourceFunc(
-            catagory_type=[CategoryType.FLATFILE],
+            category_type=[CategoryType.FLATFILE],
             description="Reads message.",
             sme_type=SMEType.SECURITY,
             func_type=FuncType.ADAPTER,
-            template="SELECT * FROM mbox(<file>)",
             enabled=False
         )
     )

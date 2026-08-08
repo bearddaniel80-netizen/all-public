@@ -10,11 +10,10 @@ from aql_link.managers.package_loader import load
 @register_function_call(
         name="json",
         printable=SourceFunc(
-            catagory_type=[CategoryType.FLATFILE],
+            category_type=[CategoryType.FLATFILE],
             description="Reads from file.",
             enabled=True,
             func_type=FuncType.ADAPTER,
-            template="SELECT * FROM json(<file>)"
         )
     )
 class JsonTableFunction:

@@ -10,11 +10,10 @@ from aql_link.managers.package_loader import load
 @register_function_call(
         name="parquet",
         printable=SourceFunc(
-            catagory_type=[CategoryType.DATABASE],
+            category_type=[CategoryType.DATABASE],
             description="Stores data as a dataframe.",
             requirements=["pyarrow"],
             func_type=FuncType.ADAPTER,
-            template="SELECT * FROM parquet(<file>)",
             enabled=False
         )
     )

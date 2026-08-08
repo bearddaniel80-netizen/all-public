@@ -12,9 +12,11 @@ from ..registry import (
         printable=SqlFunc(
             description="Find smallest value in a collection.",
             template=[
-                "SELECT MIN(<field>)",
-                "HAVING MIN(<field>) <op> <value:int>",
-                "ORDER BY MIN(<field>)"
+                "SELECT MIN(<field:int>)",
+                "HAVING MIN(<field:int>) <op:int> <value:int>",
+                "HAVING MIN(<field:int>) BETWEEN <value:int> AND <value:int>",
+                "HAVING MIN(<field:int>) IN [<value:int>, <value:int>]",
+                "ORDER BY MIN(<field:int>)"
             ],
             func_type=FuncType.AGGREGATE,
             input_type=[FieldType.INT],
@@ -22,7 +24,7 @@ from ..registry import (
             needs_groupby=True
         )
     )
-class MaxFunction(AggregateFunction):
+class MinFunction(AggregateFunction):
 
     def __init__(self):
         self.kind = "aggregate"

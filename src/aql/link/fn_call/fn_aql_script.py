@@ -8,21 +8,15 @@ from ..registry import (
 from aql_link.managers.package_loader import load
 
 @register_function_call(
-        name="xml",
+        name="aql_script",
         printable=SourceFunc(
             category_type=[CategoryType.FLATFILE],
-            description="Reads from file.",
-            enabled=True,
+            description="Reads aql script file.",
             func_type=FuncType.ADAPTER,
+            enabled=False
         )
     )
-class XmlTableFunction:
+class AqlScriptFunction:
 
     def execute(self, *args):
-        path = args[0]
-        load("xml")
-        from aql_xml.adaptor.xml_source import XmlSource
-
-        source = XmlSource.from_file(path)
-
-        return source.to_dataset()
+        raise NotImplementedError("coming soon")

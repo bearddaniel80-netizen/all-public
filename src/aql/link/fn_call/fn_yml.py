@@ -10,12 +10,11 @@ from aql_link.managers.package_loader import load
 @register_function_call(
         name="yaml",
         printable=SourceFunc(
-            catagory_type=[CategoryType.FLATFILE],
+            category_type=[CategoryType.FLATFILE],
             description="Reads from file.",
             requirements=["pyyaml"],
             enabled=True,
             func_type=FuncType.ADAPTER,
-            template="SELECT * FROM yaml(<file>)"
         )
     )
 class YamlTableFunction:

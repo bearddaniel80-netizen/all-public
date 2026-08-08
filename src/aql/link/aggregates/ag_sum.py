@@ -11,9 +11,11 @@ from ..registry import (
         printable=SqlFunc(
             description="Add all values in a collection.",
             template=[
-                "SELECT SUM(<field>)",
-                "HAVING SUM(<field>) <op> <value:int>",
-                "ORDER BY SUM(<field>)"
+                "SELECT SUM(<field:int>)",
+                "HAVING SUM(<field:int>) <op:int> <value:int>",
+                "HAVING SUM(<field:int>) BETWEEN <value:int> AND <value:int>",
+                "HAVING SUM(<field:int>) IN [<value:int>, <value:int>]",
+                "ORDER BY SUM(<field:int>)"
             ],
             func_type=FuncType.AGGREGATE,
             input_type=[FieldType.INT],

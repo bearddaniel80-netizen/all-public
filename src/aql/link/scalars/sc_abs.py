@@ -10,11 +10,14 @@ from ..registry import (
         name="ABS",
         printable=SqlFunc(
             description="Returns distance from 0.",
-            template=["SELECT ABS(<field>)"],
+            template=[
+                "SELECT ABS(<field:int>)",
+            ],
             extra_info="Integers return Integer; Float return floating integer; Complex return complex",
             func_type=FuncType.SCALAR,
             input_type=[FieldType.INT, FieldType.FLOAT, FieldType.COMPLEX],
-            return_type=FieldType.INT
+            return_type=FieldType.INT,
+            needs_groupby=False
         )
     )
 class AbsFunction(ScalarFunction):

@@ -11,12 +11,11 @@ from aql_link.managers.package_loader import load
 @register_function_call(
         name="pe",
         printable=SourceFunc(
-            catagory_type=[CategoryType.FLATFILE],
+            category_type=[CategoryType.FLATFILE],
             description="Reads maleware anomolies.",
             requirements=["pefile"],
             sme_type=SMEType.SECURITY,
             func_type=FuncType.ADAPTER,
-            template="SELECT * FROM pe(<file>)",
             enabled=False
         )
     )

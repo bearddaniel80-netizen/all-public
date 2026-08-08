@@ -10,11 +10,10 @@ from aql_link.managers.package_loader import load
 @register_function_call(
         name="7z",
         printable=SourceFunc(
-            catagory_type=[CategoryType.FLATFILE, CategoryType.ARCHIVE],
+            category_type=[CategoryType.FLATFILE, CategoryType.ARCHIVE],
             description="Reads headers in archive file.",
             requirements=["py7zr"],
             func_type=FuncType.ADAPTER,
-            template="SELECT * FROM 7z(<file>)",
             enabled=False
         )
     )

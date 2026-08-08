@@ -10,10 +10,11 @@ from ..registry import (
         name="LEN",
         printable=SqlFunc(
             description="Find length of text.",
-            template=["SELECT LEN(<field>)"],
+            template=["SELECT LEN(<field:str>)"],
             func_type=FuncType.SCALAR,
             input_type=[FieldType.TEXT],
-            return_type=FieldType.INT
+            return_type=FieldType.INT,
+            needs_groupby=False
         )
     )
 class LenFunction(ScalarFunction):

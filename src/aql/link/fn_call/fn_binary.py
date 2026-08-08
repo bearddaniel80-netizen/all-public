@@ -11,11 +11,10 @@ from aql_link.managers.package_loader import load
 @register_function_call(
         name="binary",
         printable=SourceFunc(
-            catagory_type=[CategoryType.EXECUTABLE, CategoryType.STORAGE],
+            category_type=[CategoryType.EXECUTABLE, CategoryType.STORAGE],
             description="Reads from storage format.",
             sme_type=SMEType.SECURITY,
             func_type=FuncType.ADAPTER,
-            template="SELECT * FROM bin(<file>)",
             enabled=False
         )
     )

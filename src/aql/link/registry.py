@@ -73,7 +73,11 @@ class SourceFunc(BaseFunc):
         return {
             "name": self.name,
             "description": self.description,
-            "template": self.template,
+            "template": [
+                f"SELECT * FROM {self.name}('<file>')",
+                f"SELECT <field:int> FROM {self.name}('<file>')",
+                f"SELECT <field:str> FROM {self.name}('<file>')"
+            ],
             "extra_info": self.extra_info,
             "requirements": [ item for item in self.requirements] if self.requirements else None,
             "category_type": [ item for item in self.category_type],

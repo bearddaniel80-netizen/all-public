@@ -12,9 +12,11 @@ from aql_link.managers.module_loader import load
         printable=SqlFunc(
             description="Find average or mean of a collection.",
             template=[
-                "SELECT AVG(<field>)",
-                "HAVING AVG(<field>) <op> <value:int>",
-                "ORDER BY AVG(<field>)"
+                "SELECT AVG(<field:int>)",
+                "HAVING AVG(<field:int>) <op:int> <value:int>",
+                "HAVING AVG(<field:int>) BETWEEN <value:int> AND <value:int>",
+                "HAVING AVG(<field:int>) IN [<value:int>, <value:int>]",
+                "ORDER BY AVG(<field:int>)"
             ],
             func_type=FuncType.AGGREGATE,
             input_type=[FieldType.INT],

@@ -10,10 +10,11 @@ from ..registry import (
         name="UPPER",
         printable=SqlFunc(
             description="Make every letter upper case.",
-            template=["SELECT UPPER(<field>)"],
+            template=["SELECT UPPER(<field:str>)"],
             func_type=FuncType.SCALAR,
             input_type=[FieldType.TEXT],
-            return_type=FieldType.TEXT
+            return_type=FieldType.TEXT,
+            needs_groupby=False
         )
     )
 class UpperFunction(ScalarFunction):
